@@ -1,0 +1,26 @@
+apply plugin: 'java-library'
+
+dependencies {
+    api 'com.android.tools.lint:lint-api:26.0.0-beta4'
+    api 'com.android.tools.lint:lint-checks:26.0.0-beta4'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'com.android.tools.lint:lint:26.0.0-beta4'
+    testImplementation 'com.android.tools.lint:lint-tests:26.0.0-beta4'
+    testImplementation 'com.android.tools:testutils:26.0.0-beta4'
+}
+
+jar {
+    baseName 'CustomLint'
+
+    manifest {
+        attributes 'Manifest-Version': 1.0
+        attributes("Lint-Registry": "com.example.customlint.CustomIssueRegistry")
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
